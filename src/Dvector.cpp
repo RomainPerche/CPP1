@@ -6,7 +6,7 @@
 using namespace std;
 
 Dvector::Dvector() {
-    cout << "Appel au constructeur par défaut." << "\n";
+    cout << "Appel au constructeur par défaut.\n";
 }
 
 Dvector::Dvector(int size, double val) {
@@ -75,45 +75,44 @@ Dvector::Dvector(std::string file){
     }
 }
 
-int main(){
-
-    Dvector d = Dvector(3, 4);
-    assert(d.size() == 3);
-    stringstream str;
-    d.display(str);
-    assert(str.str() == "4\n4\n4\n");
-    cout << "OK !\n";
-
-    Dvector a;
-    a = Dvector(3, 4);
-    assert(a.size() == 3);
-    stringstream str1;
-    a.display(str1);
-    a.display(cout);
-    assert(str1.str() == "4\n4\n4\n");
-    cout << "OK !\n";
-    /*
-    d.display(std::cout);
-    Dvector r = Dvector(8, 0);
-    r.display(std::cout);
-    r.fillRandomly();
-    r.display(std::cout);
-    Dvector c = Dvector(r);
-    c.display(std::cout);
-
-
-    ofstream fichier_test("test.txt", ios::out | ios::trunc);
-    if (fichier_test){
-        r.display(fichier_test);
-        fichier_test.close();
-    }
-    else{
-        cout << "erreur de merde";
-    }
-    Dvector f = Dvector("test.txt");
-    f.display(std::cout);
-
-*/
-    return 0;
-
-}
+// int main(){
+//     Dvector d = Dvector(3, 4);
+//     assert(d.size() == 3);
+//     stringstream str;
+//     d.display(str);
+//     assert(str.str() == "4\n4\n4\n");
+//     cout << "OK !\n";
+//
+//     Dvector a;
+//     a = Dvector(3, 4);
+//     assert(a.size() == 3);
+//     stringstream str1;
+//     a.display(str1);
+//     a.display(cout);
+//     assert(str1.str() == "4\n4\n4\n");
+//     cout << "OK !\n";
+//     /*
+//     d.display(std::cout);
+//     Dvector r = Dvector(8, 0);
+//     r.display(std::cout);
+//     r.fillRandomly();
+//     r.display(std::cout);
+//     Dvector c = Dvector(r);
+//     c.display(std::cout);
+//
+//
+//     ofstream fichier_test("test.txt", ios::out | ios::trunc);
+//     if (fichier_test){
+//         r.display(fichier_test);
+//         fichier_test.close();
+//     }
+//     else{
+//         cout << "erreur de merde";
+//     }
+//     Dvector f = Dvector("test.txt");
+//     f.display(std::cout);
+//
+// */
+//     return 0;
+//
+// }
