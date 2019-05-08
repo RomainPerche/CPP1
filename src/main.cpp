@@ -9,7 +9,7 @@ int main(){
 
     Dvector a = Dvector(3,4);
     Dvector b = Dvector(3,4);
-    Dvector c = a+b;
+    Dvector c = -b;
     c.display(std::cout);
     return 0;
 }

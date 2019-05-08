@@ -36,10 +36,7 @@ void Dvector::display(std::ostream & str) const {
     }
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> e64c157c5bd312b123a7f919251828f3db179019
 int Dvector::size() const {
     return dims;
 }
@@ -89,45 +86,47 @@ Dvector::Dvector(std::string file) {
     }
 }
 
-<<<<<<< HEAD
-friend Dvector Dvector::operator+(const Dvector &a, const Dvector &b){
+
+Dvector operator+(const Dvector &a, const Dvector &b){
     if (a.size() == b.size()){
         Dvector c = Dvector(a.size(), 0);
         for (int i=0; i<a.size(); i++){
             c(i) = a(i) + b(i);
         }
+        return c;
     }
     else{
-        cout << "Impossible d'additionner deux vecteurs de tailles différentes.";
+        cerr << "Impossible d'additionner deux vecteurs de tailles différentes.";
+        exit(-1);
     }
-    return c;
 }
 
-friend Dvector Dvector::operator-(const Dvector &a, const Dvector &b){
+Dvector operator-(const Dvector &a, const Dvector &b){
     if (a.size() == b.size()){
         Dvector c = Dvector(a.size(), 0);
         for (int i=0; i<a.size(); i++){
             c(i) = a(i) - b(i);
         }
+        return c;
     }
     else{
-        cout << "Impossible de soustraire deux vecteurs de tailles différentes.";
+        cerr << "Impossible de soustraire deux vecteurs de tailles différentes.";
+        exit(-1);
     }
-    return c;
 }
 
-Dvector Dvector::operator-(const Dvector &a){
-    if (a.size() == 0){
-        return a;
+Dvector Dvector::operator-() const{
+    if (dims == 0){
+        return *this;
     }
     else{
-        Dvector newDvector = Dvector(a.size(), 0);
-        for (int i=0; i<a.size(); i++){
-            newDvector(i) = -a(i);
+        Dvector newDvector = Dvector(dims, 0);
+        for (int i=0; i<dims; i++){
+            newDvector(i) = -(*this)(i);
         }
         return newDvector;
     }
-=======
+}
 
 double &Dvector::operator()(int i) {
     if (i < 0 || i > dims-1) {
@@ -200,16 +199,16 @@ Dvector Dvector::operator/(double scalaire) {
 }
 */
 
+//
+// int main() {
+//
+//     Dvector d = Dvector(3, 4);
+//     d = d/3;
+//     d.display(cout);
+//
+//     Dvector a;
+//     a = Dvector(3, 4);
+//     return 0;
 
-int main() {
 
-    Dvector d = Dvector(3, 4);
-    d = d/3;
-    d.display(cout);
-
-    Dvector a;
-    a = Dvector(3, 4);
-    return 0;
-
->>>>>>> e64c157c5bd312b123a7f919251828f3db179019
-}
+//}

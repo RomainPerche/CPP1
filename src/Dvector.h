@@ -20,7 +20,7 @@ public:
 
     friend Dvector operator+(const Dvector &a, const Dvector &b); //addition de 2 vecteurs
     friend Dvector operator-(const Dvector &a, const Dvector &b); //soustraction de 2 vecteurs
-    Dvector operator-(const Dvector &a); //opérateur unaire -
+    Dvector operator-() const; //opérateur unaire -
 
     void display(std::ostream & str) const;
     int size() const;
