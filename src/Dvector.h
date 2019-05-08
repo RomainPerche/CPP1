@@ -28,12 +28,26 @@ public:
 
     double &operator() (int i);
     double operator() (int i) const;
-    Dvector operator+ (double scalaire);
-    Dvector operator- (double scalaire);
-    Dvector operator/ (double scalaire);
-    Dvector operator* (double scalaire);
 
-    Dvector &operator=(const Dvector &vector);
+    Dvector operator+ (double scalaire) const;
+    Dvector operator- (double scalaire) const;
+    Dvector operator/ (double scalaire) const;
+    Dvector operator* (double scalaire) const;
+
+    Dvector &operator= (const Dvector &vector);
+
+    void operator+= (const Dvector &vector);
+    void operator+= (double scalaire);
+
+    void operator-= (const Dvector &vector);
+    void operator-= (double scalaire);
+
+    void operator*= (double scalaire);
+    void operator/= (double scalaire);
+
+    bool operator== (const Dvector & vector) const;
+
+    void resize(int newDim, )
 
 
 };

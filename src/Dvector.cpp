@@ -157,7 +157,7 @@ Dvector &Dvector::operator=(const Dvector &vector) {
 }
 
 
-Dvector Dvector::operator+(double scalaire) {
+Dvector Dvector::operator+(double scalaire) const {
     Dvector vecteur(dims, 0);
     for (int i=0; i < dims; i++){
         vecteur(i) = coord[i] + scalaire;
@@ -166,7 +166,7 @@ Dvector Dvector::operator+(double scalaire) {
 }
 
 
-Dvector Dvector::operator-(double scalaire) {
+Dvector Dvector::operator-(double scalaire) const {
     Dvector vecteur(dims, 0);
     for (int i=0; i < dims; i++){
         vecteur(i) = coord[i] - scalaire;
@@ -175,7 +175,7 @@ Dvector Dvector::operator-(double scalaire) {
 }
 
 
-Dvector Dvector::operator*(double scalaire) {
+Dvector Dvector::operator*(double scalaire) const {
     Dvector vecteur(dims, 0);
     for (int i=0; i < dims; i++){
         vecteur(i) = coord[i]*scalaire;
@@ -184,8 +184,7 @@ Dvector Dvector::operator*(double scalaire) {
 }
 
 
-/*
-Dvector Dvector::operator/(double scalaire) {
+Dvector Dvector::operator/(double scalaire) const {
     Dvector vecteur(dims, 0);
     if (scalaire != 0){
         for (int i=0; i < dims; i++){
@@ -193,11 +192,86 @@ Dvector Dvector::operator/(double scalaire) {
         }
     }
     else{
-        cerr << "Division by 0 error";
+        cerr << "Division by 0 error" << "\n";
+        exit(-1);
+    }
+    return vecteur;
+}
+
+
+void Dvector::operator+=(double scalaire) {
+    for (int i=0; i < dims; i++){
+        (*this)(i) += scalaire;
+    }
+}
+
+
+void Dvector::operator+=(const Dvector & vector) {
+    if ( dims == vector.size() ){
+        for (int i=0; i < dims; i++){
+            (*this)(i) += vector(i);
+        }
+    }
+    else{
+        std::cerr << "Vectors must have same size" << '\n';
         exit(-1);
     }
 }
-*/
+
+
+void Dvector::operator-=(double scalaire) {
+    for (int i=0; i < dims; i++){
+        (*this)(i) -= scalaire;
+    }
+}
+
+
+void Dvector::operator-=(const Dvector & vector) {
+    if ( dims == vector.size() ){
+        for (int i=0; i < dims; i++){
+            (*this)(i) -= vector(i);
+        }
+    }
+    else{
+        std::cerr << "Vectors must have same size" << '\n';
+        exit(-1);
+    }
+}
+
+
+void Dvector::operator*=(double scalaire) {
+    for (int i=0; i < dims; i++){
+        (*this)(i) *= scalaire;
+    }
+}
+
+
+void Dvector::operator/=(double scalaire) {
+    if (scalaire != 0){
+        for (int i=0; i < dims; i++){
+            (*this)(i) /= scalaire;
+        }
+    }
+    else{
+        cerr << "Division by 0 error" << '\n';
+        exit(-1);
+    }
+}
+
+
+bool Dvector::operator== (const Dvector & vector) const {
+    if ( vector.size() != dims ){
+        return false;
+    }
+    else {
+        for (int i=0; i < dims; i++){
+            if ( vector(i) != (*this)(i) ){
+                return false;
+            }
+        }
+        return true;
+    }
+}
 
 //
 // int main() {
@@ -210,5 +284,14 @@ Dvector Dvector::operator/(double scalaire) {
 //     a = Dvector(3, 4);
 //     return 0;
 
+    Dvector d = Dvector(3, 4);
+    Dvector e = Dvector(4, 4);
+    bool egal = (d == e);
+    cout << egal;
+    d.display(cout);
 
-//}
+    Dvector a;
+    a = Dvector(3, 4);
+    return 0;
+
+}
