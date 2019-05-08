@@ -3,11 +3,16 @@
 #include <string>
 #include <assert.h>
 
+
 using namespace std;
+
 
 Dvector::Dvector() {
     cout << "Appel au constructeur par défaut." << "\n";
+    dims = 0;
+    coord = new double[0];
 }
+
 
 Dvector::Dvector(int size, double val) {
     cout << "Appel au constructeur avec arguments." << "\n";
@@ -18,27 +23,32 @@ Dvector::Dvector(int size, double val) {
     }
 }
 
+
 Dvector::~Dvector() {
     cout << "Appel au destructeur." << "\n";
     delete [] coord;
 }
 
-void Dvector::display(std::ostream & str){
+
+void Dvector::display(std::ostream & str) {
     for (int i=0; i<dims; i++){
         str << coord[i] << "\n";
     }
 }
 
-int Dvector::size(){
+
+int Dvector::size() {
     return dims;
 }
 
-void Dvector::fillRandomly(){
+
+void Dvector::fillRandomly() {
     for (int i=0; i<dims; i++){
         double value = (double) rand() / RAND_MAX;
         coord[i]=value;
     }
 }
+
 
 Dvector::Dvector(const Dvector & d) {
     cout << "Appel au constructeur par recopie." << "\n";
@@ -50,7 +60,8 @@ Dvector::Dvector(const Dvector & d) {
     }
 }
 
-Dvector::Dvector(std::string file){
+
+Dvector::Dvector(std::string file) {
     cout << "Appel au constructeur par lecture de fichier" << "\n";
     ifstream fichier(file.c_str(), ios::in);
     int size = 0;
@@ -75,45 +86,25 @@ Dvector::Dvector(std::string file){
     }
 }
 
-int main(){
+
+double & Dvector::operator()(int i) {
+    if (i < 0 || i > dims-1) {
+        cerr << "Index out of range\n";
+        exit(0);
+    }
+    return coord[i];
+}
+
+
+int main() {
 
     Dvector d = Dvector(3, 4);
-    assert(d.size() == 3);
-    stringstream str;
-    d.display(str);
-    assert(str.str() == "4\n4\n4\n");
-    cout << "OK !\n";
+
+    d(0) = 1;
+    cout << d(0) << "\n";
 
     Dvector a;
     a = Dvector(3, 4);
-    assert(a.size() == 3);
-    stringstream str1;
-    a.display(str1);
-    a.display(cout);
-    assert(str1.str() == "4\n4\n4\n");
-    cout << "OK !\n";
-    /*
-    d.display(std::cout);
-    Dvector r = Dvector(8, 0);
-    r.display(std::cout);
-    r.fillRandomly();
-    r.display(std::cout);
-    Dvector c = Dvector(r);
-    c.display(std::cout);
-
-
-    ofstream fichier_test("test.txt", ios::out | ios::trunc);
-    if (fichier_test){
-        r.display(fichier_test);
-        fichier_test.close();
-    }
-    else{
-        cout << "erreur de merde";
-    }
-    Dvector f = Dvector("test.txt");
-    f.display(std::cout);
-
-*/
     return 0;
 
 }

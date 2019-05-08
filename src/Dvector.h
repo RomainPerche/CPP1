@@ -21,6 +21,8 @@ public:
     int size();
     void fillRandomly();
 
+    double & operator() (int i);
+
 };
 
 
