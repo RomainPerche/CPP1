@@ -2,7 +2,9 @@
 #include "main.h"
 
 int main(){
-    //test_defaut();
     test_param();
+    test_size();
+    test_copie();
+    test_fichier();
     return 0;
 }
