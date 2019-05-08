@@ -18,6 +18,4 @@ int test_fichier(){
     assert(str.str() == "4\n4\n4\n");
     std::cout << "Constructeur avec lecture de fichier OK !\n";
     return 0;
-
-
 }
