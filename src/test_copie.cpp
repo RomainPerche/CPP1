@@ -1,5 +1,7 @@
 #include "Dvector.h"
 #include "main.h"
+#include <assert.h>
+
 
 int test_copie(){
     Dvector a = Dvector(3, 4);
