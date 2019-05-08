@@ -30,14 +30,14 @@ Dvector::~Dvector() {
 }
 
 
-void Dvector::display(std::ostream & str) {
+void Dvector::display(std::ostream & str) const {
     for (int i=0; i<dims; i++){
         str << coord[i] << "\n";
     }
 }
 
 
-int Dvector::size() {
+int Dvector::size() const {
     return dims;
 }
 
@@ -86,69 +86,87 @@ Dvector::Dvector(std::string file) {
     }
 }
 
-<<<<<<< HEAD
 
-double & Dvector::operator()(int i) {
+double &Dvector::operator()(int i) {
     if (i < 0 || i > dims-1) {
         cerr << "Index out of range\n";
-        exit(0);
+        exit(-1);
     }
     return coord[i];
 }
 
 
+double Dvector::operator()(int i) const {
+    if (i < 0 || i > dims-1) {
+        cerr << "Index out of range\n";
+        exit(-1);
+    }
+    return coord[i];
+}
+
+
+Dvector &Dvector::operator=(const Dvector &vector) {
+    delete [] this->coord;
+    this->dims = vector.size();
+    this->coord = new double[dims];
+    for (int i=0; i < dims; i++){
+        this->coord[i] = vector(i);
+    }
+    return *this;
+}
+
+
+Dvector Dvector::operator+(double scalaire) {
+    Dvector vecteur(dims, 0);
+    for (int i=0; i < dims; i++){
+        vecteur(i) = coord[i] + scalaire;
+    }
+    return vecteur;
+}
+
+
+Dvector Dvector::operator-(double scalaire) {
+    Dvector vecteur(dims, 0);
+    for (int i=0; i < dims; i++){
+        vecteur(i) = coord[i] - scalaire;
+    }
+    return vecteur;
+}
+
+
+Dvector Dvector::operator*(double scalaire) {
+    Dvector vecteur(dims, 0);
+    for (int i=0; i < dims; i++){
+        vecteur(i) = coord[i]*scalaire;
+    }
+    return vecteur;
+}
+
+
+/*
+Dvector Dvector::operator/(double scalaire) {
+    Dvector vecteur(dims, 0);
+    if (scalaire != 0){
+        for (int i=0; i < dims; i++){
+            vecteur(i) = coord[i]/scalaire;
+        }
+    }
+    else{
+        cerr << "Division by 0 error";
+        exit(-1);
+    }
+}
+*/
+
+
 int main() {
 
     Dvector d = Dvector(3, 4);
-
-    d(0) = 1;
-    cout << d(0) << "\n";
+    d = d/3;
+    d.display(cout);
 
     Dvector a;
     a = Dvector(3, 4);
     return 0;
 
 }
-=======
-// int main(){
-//     Dvector d = Dvector(3, 4);
-//     assert(d.size() == 3);
-//     stringstream str;
-//     d.display(str);
-//     assert(str.str() == "4\n4\n4\n");
-//     cout << "OK !\n";
-//
-//     Dvector a;
-//     a = Dvector(3, 4);
-//     assert(a.size() == 3);
-//     stringstream str1;
-//     a.display(str1);
-//     a.display(cout);
-//     assert(str1.str() == "4\n4\n4\n");
-//     cout << "OK !\n";
-//     /*
-//     d.display(std::cout);
-//     Dvector r = Dvector(8, 0);
-//     r.display(std::cout);
-//     r.fillRandomly();
-//     r.display(std::cout);
-//     Dvector c = Dvector(r);
-//     c.display(std::cout);
-//
-//
-//     ofstream fichier_test("test.txt", ios::out | ios::trunc);
-//     if (fichier_test){
-//         r.display(fichier_test);
-//         fichier_test.close();
-//     }
-//     else{
-//         cout << "erreur de merde";
-//     }
-//     Dvector f = Dvector("test.txt");
-//     f.display(std::cout);
-//
-// */
-//     return 0;
-//
-// }
->>>>>>> f36c73e536e8b59ba531a0664c78295bbd6b8e63

@@ -1,5 +1,7 @@
 #include "Dvector.h"
 #include "main.h"
+#include <assert.h>
+
 
 int test_size(){
     Dvector d = Dvector(3, 4);

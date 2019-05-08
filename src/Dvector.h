@@ -18,11 +18,18 @@ public:
     Dvector(const Dvector & d); //par recopie
     Dvector(std::string); //avec lecture d'un fichier
 
-    void display(std::ostream & str);
-    int size();
+    void display(std::ostream & str) const;
+    int size() const;
     void fillRandomly();
 
-    double & operator() (int i);
+    double &operator() (int i);
+    double operator() (int i) const;
+    Dvector operator+ (double scalaire);
+    Dvector operator- (double scalaire);
+    Dvector operator/ (double scalaire);
+    Dvector operator* (double scalaire);
+
+    Dvector &operator=(const Dvector &vector);
 
 };
 
