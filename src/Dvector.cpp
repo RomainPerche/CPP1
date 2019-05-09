@@ -96,7 +96,7 @@ Dvector operator+(const Dvector &a, const Dvector &b){
         return c;
     }
     else{
-        cerr << "Impossible d'additionner deux vecteurs de tailles différentes.";
+        cerr << "Impossible d'additionner deux vecteurs de tailles différentes.\n";
         exit(-1);
     }
 }
@@ -110,7 +110,7 @@ Dvector operator-(const Dvector &a, const Dvector &b){
         return c;
     }
     else{
-        cerr << "Impossible de soustraire deux vecteurs de tailles différentes.";
+        cerr << "Impossible de soustraire deux vecteurs de tailles différentes.\n";
         exit(-1);
     }
 }
@@ -273,25 +273,45 @@ bool Dvector::operator== (const Dvector & vector) const {
     }
 }
 
-//
+Dvector Dvector::resize(int size, double val) const{
+    Dvector newDvector = Dvector(size, 0);
+    int min;
+    int max;
+    if (size == dims){
+        return *this;
+    }
+    else{
+        if (size < dims){
+            min = size;
+            max = dims;
+            for (int i=0; i<min; i++){
+                newDvector(i) = coord[i];
+            }
+        }
+        else{
+            min = dims;
+            max = size;
+            for (int i=0; i<min; i++){
+                newDvector(i) = coord[i];
+            }
+            for (int i=min; i<max; i++){
+                  newDvector(i) = val;
+            }
+        }
+      }
+  return newDvector;
+}
+
+
 // int main() {
-//
 //     Dvector d = Dvector(3, 4);
-//     d = d/3;
+//     Dvector e = Dvector(4, 4);
+//     bool egal = (d == e);
+//     cout << egal;
 //     d.display(cout);
 //
 //     Dvector a;
 //     a = Dvector(3, 4);
 //     return 0;
-
-    Dvector d = Dvector(3, 4);
-    Dvector e = Dvector(4, 4);
-    bool egal = (d == e);
-    cout << egal;
-    d.display(cout);
-
-    Dvector a;
-    a = Dvector(3, 4);
-    return 0;
-
-}
+//
+// }

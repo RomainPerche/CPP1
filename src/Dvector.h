@@ -47,7 +47,7 @@ public:
 
     bool operator== (const Dvector & vector) const;
 
-    void resize(int newDim, )
+    Dvector resize(int size, double val) const;
 
 
 };
