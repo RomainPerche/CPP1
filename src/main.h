@@ -22,5 +22,7 @@ int test_op_plus_egal();
 int test_op_moins_egal();
 int test_op_egal_egal();
 int test_resize();
+int test_op_ext();
+int test_op_inj();
 
 #endif //DEMO_MAIN_H

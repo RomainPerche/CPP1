@@ -302,6 +302,42 @@ Dvector Dvector::resize(int size, double val) const{
   return newDvector;
 }
 
+ostream& operator<<(ostream &o, const Dvector vecteur){
+    if (vecteur.size() == 0){
+        o << "[]" << endl;
+    }
+    else{
+        o << "[";
+        for (int i=0; i<vecteur.size()-1; i++){
+            o << vecteur(i) <<",";
+        }
+        o << vecteur(vecteur.size() -1) << "]";
+    }
+    return o;
+}
+
+istream& operator>>(istream &i, Dvector &vecteur){
+    char c;
+    int count = 0;
+    cout << "Entrer un tableau de la forme [ . , ... , . ] de taille " << vecteur.size() << endl;
+    i >> c;
+    if (c == '['){
+        i >> vecteur(count) >> c;
+        count++;
+        while (count<vecteur.size() && c == ','){
+            i >> vecteur(count) >> c;
+            count++;
+        }
+        if (c == ']' && count == vecteur.size()){
+            return i;
+        }
+    }
+    else{
+        cout << "Votre tableau n'est pas de la bonne forme" << endl;
+    }
+    return i;
+}
+
 
 // int main() {
 //     Dvector d = Dvector(3, 4);
