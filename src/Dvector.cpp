@@ -97,7 +97,7 @@ Dvector operator+(const Dvector &a, const Dvector &b){
         return c;
     }
     else{
-        cerr << "Impossible d'additionner deux vecteurs de tailles différentes.";
+        cerr << "Impossible d'additionner deux vecteurs de tailles différentes.\n";
         exit(-1);
     }
 }
@@ -111,7 +111,7 @@ Dvector operator-(const Dvector &a, const Dvector &b){
         return c;
     }
     else{
-        cerr << "Impossible de soustraire deux vecteurs de tailles différentes.";
+        cerr << "Impossible de soustraire deux vecteurs de tailles différentes.\n";
         exit(-1);
     }
 }
@@ -283,16 +283,69 @@ bool Dvector::operator== (const Dvector & vector) const {
     }
 }
 
-/*
-int main() {
-    Dvector d = Dvector(3, 4);
-    Dvector e = Dvector(4, 4);
-    bool egal = (d == e);
-    cout << egal;
-    d.display(cout);
-
-    Dvector a;
-    a = Dvector(3, 4);
-    return 0;
+Dvector Dvector::resize(int size, double val) const{
+    Dvector newDvector = Dvector(size, 0);
+    int min;
+    int max;
+    if (size == dims){
+        return *this;
+    }
+    else{
+        if (size < dims){
+            min = size;
+            max = dims;
+            for (int i=0; i<min; i++){
+                newDvector(i) = coord[i];
+            }
+        }
+        else{
+            min = dims;
+            max = size;
+            for (int i=0; i<min; i++){
+                newDvector(i) = coord[i];
+            }
+            for (int i=min; i<max; i++){
+                  newDvector(i) = val;
+            }
+        }
+      }
+  return newDvector;
 }
-*/
+
+
+ostream& operator<<(ostream &o, const Dvector vecteur){
+    if (vecteur.size() == 0){
+        o << "[]" << endl;
+    }
+    else{
+        o << "[";
+        for (int i=0; i<vecteur.size()-1; i++){
+            o << vecteur(i) <<",";
+        }
+        o << vecteur(vecteur.size() -1) << "]";
+    }
+    return o;
+}
+
+
+istream& operator>>(istream &i, Dvector &vecteur){
+    char c;
+    int count = 0;
+    cout << "Entrer un tableau de la forme [ . , ... , . ] de taille " << vecteur.size() << endl;
+    i >> c;
+    if (c == '['){
+        i >> vecteur(count) >> c;
+        count++;
+        while (count<vecteur.size() && c == ','){
+            i >> vecteur(count) >> c;
+            count++;
+        }
+        if (c == ']' && count == vecteur.size()){
+            return i;
+        }
+    }
+    else{
+        cout << "Votre tableau n'est pas de la bonne forme" << endl;
+    }
+    return i;
+}
