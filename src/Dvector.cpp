@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <assert.h>
+#include <string.h>
 
 
 using namespace std;
@@ -156,6 +157,15 @@ Dvector &Dvector::operator=(const Dvector &vector) {
     return *this;
 }
 
+/*
+Dvector &Dvector::operator=(Dvector &vector) {
+    delete [] this->coord;
+    this->dims = vector.size();
+    this->coord = new double[dims];
+    memcpy(coord, &vector(0), sizeof(vector(0))*dims);
+    return *this;
+}
+*/
 
 Dvector Dvector::operator+(double scalaire) const {
     Dvector vecteur(dims, 0);
@@ -273,17 +283,8 @@ bool Dvector::operator== (const Dvector & vector) const {
     }
 }
 
-//
-// int main() {
-//
-//     Dvector d = Dvector(3, 4);
-//     d = d/3;
-//     d.display(cout);
-//
-//     Dvector a;
-//     a = Dvector(3, 4);
-//     return 0;
-
+/*
+int main() {
     Dvector d = Dvector(3, 4);
     Dvector e = Dvector(4, 4);
     bool egal = (d == e);
@@ -293,5 +294,5 @@ bool Dvector::operator== (const Dvector & vector) const {
     Dvector a;
     a = Dvector(3, 4);
     return 0;
-
 }
+*/

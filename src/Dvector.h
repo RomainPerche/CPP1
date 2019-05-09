@@ -35,6 +35,7 @@ public:
     Dvector operator* (double scalaire) const;
 
     Dvector &operator= (const Dvector &vector);
+    Dvector &operator=(Dvector & other);
 
     void operator+= (const Dvector &vector);
     void operator+= (double scalaire);
@@ -47,12 +48,7 @@ public:
 
     bool operator== (const Dvector & vector) const;
 
-    void resize(int newDim, )
-
-
 };
-
-
 
 
 #endif //DEMO_DVECTOR_H
