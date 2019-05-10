@@ -72,7 +72,7 @@ Dvector GenerateurParkMiller::genererVecteur() {
     return vect;
 }
 
-
+/*
 int main() {
     GenerateurParkMiller gpm1 = GenerateurParkMiller(4);
     GenerateurParkMiller gpm2 = GenerateurParkMiller(6);
@@ -84,3 +84,4 @@ int main() {
     //vect.display(cout);
     return 0;
 }
+*/
