@@ -16,17 +16,20 @@ private:
 public:
     //4 methodes de base de la classe:
     Generateur();    //par défaut
-    //operator= (const Generateur &generateur);    //operateur =
+    Generateur &operator= (const Generateur &generateur);    //operateur =
     Generateur(const Generateur &generateur);    //par recopie
+
+    virtual void clone(Generateur &generateur) = 0;
 
     Generateur(int dimension);   //constructeur avec argument
 
-    int getDimension();
+    int getDimension() const;
+    void setDimension(int dimension);
 
     virtual Dvector genererVecteur() = 0;
 
-    virtual void set_seed(long seed) = 0;
-    virtual long get_seed() = 0;
+    virtual void set_seed(unsigned long long int seed) = 0;
+    virtual unsigned long long int get_seed() = 0;
     virtual void reset_seed() = 0;
 };
 

@@ -11,15 +11,23 @@ using namespace std;
 class GenerateurParkMiller : public Generateur
 {
 private:
-    long seed;
     ParkMiller* parkMiller;
 
 public:
     GenerateurParkMiller(int dimension);
     GenerateurParkMiller();
 
-    long get_seed();
-    void set_seed(long seed);
+    GenerateurParkMiller(const GenerateurParkMiller &generateur);
+
+    GenerateurParkMiller &operator=(GenerateurParkMiller &generateur);
+
+    void clone(Generateur &generateur) override;
+
+    void setParkMiller(ParkMiller &pm);
+    ParkMiller *getParkMiller() const;
+
+    unsigned long long int get_seed();
+    void set_seed(unsigned long long int seed);
     void reset_seed();
 
     Dvector genererVecteur();
