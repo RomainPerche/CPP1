@@ -16,7 +16,7 @@ int ParkMiller::Q=127773;
 int ParkMiller::R=2836;
 
 
-ParkMiller::ParkMiller(const ParkMiller & parkMiller) {
+ParkMiller::ParkMiller(const ParkMiller &parkMiller) {
     this->seed = parkMiller.get_seed();
 }
 
@@ -29,7 +29,7 @@ ParkMiller::ParkMiller() {
     this->seed = 1;
 }
 
-ParkMiller::ParkMiller(long seed) {
+ParkMiller::ParkMiller(unsigned long long int seed) {
     if (seed > 0) {
         this->seed = seed;
     }
@@ -38,11 +38,11 @@ ParkMiller::ParkMiller(long seed) {
     }
 }
 
-long ParkMiller::get_seed() const {
+unsigned long long int ParkMiller::get_seed() const {
     return this->seed;
 }
 
-void ParkMiller::set_seed(long seed) {
+void ParkMiller::set_seed(unsigned long long int seed) {
     if (seed > 0) {
         this->seed = seed;
     }
@@ -55,8 +55,8 @@ void ParkMiller::reset_seed() {
     this->seed = 1;
 }
 
-long ParkMiller::genererProchain() {
-    long newNumber = A*( seed - floor(seed/Q)*Q ) - R*floor(seed/Q);
+unsigned long long int ParkMiller::genererProchain() {
+    unsigned long long int newNumber = A*( seed - floor(seed/Q)*Q ) - R*floor(seed/Q);
     return newNumber%M;
 }
 
