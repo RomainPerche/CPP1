@@ -48,13 +48,10 @@ public:
 
     bool operator== (const Dvector & vector) const;
 
-<<<<<<< HEAD
-=======
     Dvector resize(int size, double val) const;
     friend ostream& operator<<(ostream&, const Dvector);
     friend istream& operator>>(istream&, Dvector&);
 
->>>>>>> a309f72d3eb4010436552d879c0023da669f1645
 };
 
 

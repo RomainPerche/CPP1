@@ -16,7 +16,7 @@ private:
 public:
     //4 methodes de base de la classe:
     Generateur();    //par défaut
-    operator= (const Generateur &generateur);    //operateur =
+    //operator= (const Generateur &generateur);    //operateur =
     Generateur(const Generateur &generateur);    //par recopie
 
     Generateur(int dimension);   //constructeur avec argument

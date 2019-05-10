@@ -1,26 +1,29 @@
 #ifndef DEMO_DISTRIBUTIONNORMALE_H
 #define DEMO_DISTRIBUTIONNORMALE_H
+#include "Distribution.h"
 
 
-class NormalDistribution : public Distribution {
+class DistributionNormale : public Distribution {
  public:
-  NormalDistribution();
-  ~NormalDistribution();
+   DistributionNormale();
+   virtual ~DistributionNormale();
+   DistributionNormale(const DistributionNormale & nDistrib);
+   DistributionNormale &operator=(DistributionNormale & nDistrib);
 
-  // Distribution functions
+  // Fonctions de distributions
   double pdf(const double& x) const;
   double cdf(const double& x) const;
 
-  // Inverse cumulative distribution function (aka the probit function)
-  double inv_cdf(const double& quantile) const;
+  // Fonction inverse de la cdf
+  double RationalApproximation(double t) const;
+  double inv_cdf(double p) const;
 
-  // Descriptive stats
-  double mean() const;   // equal to 0
-  double var() const;    // equal to 1
-  double stdev() const;  // equal to 1
+  double mean() const;
+  double var() const;
+  double stdev() const;
 
-  // Obtain a sequence of random draws from the standard normal distribution
-  void random_draws(const std::vector<double>& uniform_draws,
-                            std::vector<double>& dist_draws);
+  // Méthode de transformation d’une distribution uniforme en une autre distribution
+  virtual void random_draws(const Dvector& uniform_draws,
+                            Dvector& dist_draws);
 };
 #endif

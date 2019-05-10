@@ -24,5 +24,6 @@ int test_op_egal_egal();
 int test_resize();
 int test_op_ext();
 int test_op_inj();
+int test_cdf();
 
 #endif //DEMO_MAIN_H
